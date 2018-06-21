@@ -8,7 +8,7 @@ turtleBison.tab.c turtleBison.tab.h: turtleBison.y
 	bison -d turtleBison.y
 
 executable: lex.yy.c turtleBison.tab.c turtleBison.tab.h symtab.c symtab.h
-	gcc lex.yy.c turtleBison.tab.c symtab.c -o executable
+	gcc lex.yy.c turtleBison.tab.c symtab.c -lfl -o executable
 
 executable.ps: MyTurtleProgram.tlt executable
 	./executable < MyTurtleProgram.tlt > executable.ps

@@ -1,1 +1,11 @@
-;
+// This is my Turtle Program
+forward(100);
+rotate(-45);
+forward(100);
+rotate(45);
+forward(2*100-50+50-50-2*1000+2000-10^2);
+rotate(-45);
+forward(100);
+circle(35);
+rotate(-45);
+forward(150);

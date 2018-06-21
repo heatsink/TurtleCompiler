@@ -1,0 +1,45 @@
+// Lex File
+Procedure      return PROCEDURE;
+,              return COMMA;
+
+// Turtle Program
+Variable x;
+Procedure q()
+{ x=x+1;
+}
+Procedure p( a, b, c)
+{ Variable d;
+  Forward a;
+  Forward b;
+  Forward c;
+}
+Color 1, 0, 0;
+p(x, 20, 4*10);
+
+
+
+// y File
+%token COMMA
+%token PROCEDURE
+
+decl: PROCEDURE ID {scope_open(); printf("/tpt%s {\n", $2->name);} 
+      OPEN param_list CLOSE
+      START 
+         decllist commandlist 
+      END printf(scope_close();" end} def\n");};
+
+command: ID OPEN arg_list CLOSE SEMICOLON;
+
+// Parameter list can be empty or filled
+param_list:;
+param_list: params;
+// If parameter list filled->start with ID, more params
+params: ID {$1->defined=1; printf("/tlt%s exch def\n", $1->name);};
+params: ID COMMMA .params {$1->defined=1; printf("/tlt%s exch def\n", $1->name);};
+
+
+arg_list:;
+arg_list: args;
+args: expr;
+args: args COMMA expr;
+

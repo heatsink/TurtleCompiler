@@ -2,9 +2,34 @@
 #include "symtab.h"
 #include "turtleBison.tab.h"
 %}
-%option noyywrap
 %%
+forward               return FORWARD;
+circle                return CIRCLE;
+rotate                return ROTATE;
+color                 return COLOR;
+thickness             return THICKNESS;
+;                     return SEMICOLON;
+\(                    return OPEN;
+\)                    return CLOSE;
+\^                    return EXPONENT;
+\*                    return MUL;
+\\                    return DIV;
+\+                    return PLUS;
+\-                    return MINUS;
+\,                    return COMMA;
+\=                    return EQUALS;
+Integer               return INTEGER;
+[0-9]+   yylval.i=atoi(yytext); return INTEGER;
+[a-z]+      {
+               yylval.n=lookup(yytext);
+               if (yylval.n==NULL) yylval.n=insert(yytext);
+               return ID;
+            }
 
-; return SEMICOLON;
+\/\/.*               ;
+\n                   ;
+[[:space:]]          ;
+
+.  fprintf(stderr, "Unexpected '%c'\n", yytext[0]);
 
 %%
