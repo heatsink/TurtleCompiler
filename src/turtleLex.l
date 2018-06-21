@@ -18,6 +18,7 @@ thickness             return THICKNESS;
 \-                    return MINUS;
 \,                    return COMMA;
 \=                    return EQUALS;
+var                   return VAR;
 Integer               return INTEGER;
 [0-9]+   yylval.i=atoi(yytext); return INTEGER;
 [a-z]+      {

@@ -7,6 +7,7 @@ typedef struct node {
   char *name;
   int level;
   /* may be other stuff */
+  int defined;
 
 }  node;
 
