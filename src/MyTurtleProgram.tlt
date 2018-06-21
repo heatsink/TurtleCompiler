@@ -7,7 +7,7 @@ forward(2*100-50+50-50-2*1000+2000-10^2);
 //rotate(-45);
 rotate(-25*2);
 forward(100);
-circle(35);
+circle(35*2);
 rotate(-45);
 forward(150);
 var dog = 10;

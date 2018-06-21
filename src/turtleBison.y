@@ -9,8 +9,8 @@ int yyerror(const char *msg);
 %}
 
 %token FORWARD CIRCLE ROTATE COLOR THICKNESS
-%token OPEN CLOSE
-%token EXPONENT MUL DIV PLUS MINUS COMMA EQUALS VAR
+%token OPEN CLOSE EXPONENT MUL DIV PLUS MINUS COMMA EQUALS VAR
+%token IF WHILE ISEQUAL ISNOTEQUAL AND OR NOT LESSTHAN GREATERTHAN
 
 %token <i> INTEGER 
 %token SEMICOLON
@@ -25,10 +25,8 @@ program: header commandlist trailer;
 header: { printf("%%!PS\n"); };
 commandlist: ;
 commandlist: commandlist command;
-command: CIRCLE OPEN expr CLOSE SEMICOLON
+command: startCircle CIRCLE OPEN expr CLOSE SEMICOLON endCircle
        { printf("0 0 50 0 360 arc closepath fill\n"); };
-command: CIRCLE OPEN INTEGER CLOSE SEMICOLON
-       { printf("0 0 %d 0 360 arc closepath fill\n", $3); };
 command: FORWARD OPEN expr CLOSE SEMICOLON
        { printf("\nnewpath 0 0 moveto 0 exch lineto currentpoint translate stroke\n");};
 command: ROTATE OPEN MINUS INTEGER CLOSE SEMICOLON
@@ -41,9 +39,14 @@ command: COLOR OPEN INTEGER INTEGER INTEGER CLOSE SEMICOLON
        { printf("%.11f %.11f %.11f setrgbcolor\n", ($3/255.0), ($4/255.0), ($5/255.0));};
 command: THICKNESS OPEN INTEGER CLOSE SEMICOLON
        { printf("%d setlinewidth\n", $3); }; 
-command: variableDecl
-
+command: variableDecl;
+command: bool;
 command: SEMICOLON;
+
+startCircle:
+       { printf("0 0 \n"); };
+endCircle:
+       { printf("0 360 arc closepath fill\n"); };
 
 variableDecl: assign;
 variableDecl: decl;
@@ -73,6 +76,20 @@ factor: ID
       if($1->defined){ printf("\ntlt%s ", $1->name); }
       else{ int yyerror(const char *msg){ fprintf(stderr, "Error: Missing Constant Val: %s\n", msg); } } 
       };
+
+bool: expr GREATERTHAN expr {printf("gt ");};
+bool: expr LESSTHAN expr {printf("lt ");};
+bool: expr ISEQUAL expr {printf("eq ");};
+bool: expr ISNOTEQUAL expr {printf("ne ");};
+bool: xbool;
+
+xbool: ybool;
+xbool: bool OR bool {printf("or ");};
+xbool: bool AND bool {printf("and ");};
+xbool: NOT bool {printf(" not ");};
+
+ybool: OPEN bool CLOSE;
+
 
 factor: OPEN expr CLOSE;
 trailer: {printf("%% Program Complete\n");};
