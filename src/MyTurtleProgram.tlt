@@ -9,8 +9,27 @@ rotate(-25*2);
 forward(100);
 circle(35*2);
 rotate(-45);
-forward(150);
 var dog = 10;
 forward(dog);
-dog = 200;
+dog = 80;
 forward(dog);
+
+var i = 10;
+if(i==10){
+forward(i);
+};
+
+while(i < 15) {
+   i = i+1;
+forward(i);
+};
+
+rotate(-25*2);
+forward(100);
+rotate(-25*2);
+forward(100);
+rotate(25);
+var d = 4;
+if (d<5) {
+forward(150);
+};
