@@ -47,18 +47,18 @@ command: conditional;
 command: SEMICOLON;
 
 /* FUNCTIONS */
-functionCall: FUNC ID OPEN argList CLOSE SEMICOLON 
-      { printf("func%s \n", $2->name); };
+functionCall: ID OPEN argList CLOSE SEMICOLON 
+      { printf("func%s \n", $1->name); };
 argList: ;
 argList:args;
 args:expr;
 args:args COMMA expr;
 functionDecleration: functDecl;
-functDecl: ID
-      { scope_open(); printf("/func%s { \n4 dict begin\n" ,$1->name); }
+functDecl: FUNC ID
+      { scope_open(); printf("/func%s { \n4 dict begin\n" ,$2->name); }
 OPEN paramList CLOSE 
 OPENCURLYBRACE commandList CLOSECURLYBRACE
-      { $1->defined=1; printf("end\n} def \n\n"); scope_close(); };
+      { $2->defined=1; printf("end\n} def \n\n"); scope_close(); };
 
 paramList: ;
 paramList: params;
@@ -113,7 +113,7 @@ prod: prod MOD exp { printf("mod "); };
 exp: factor;
 exp: exp EXPONENT factor { printf("exp "); };
 factor: INTEGER { printf(" %d ",$1); };
-factor: RAND { printf("%d ", rand()%100); };
+factor: RAND { printf("%d ", (1+rand()%20)); };
 factor: ID  
       { 
       if($1->defined){ printf(" tlt%s ", $1->name); }

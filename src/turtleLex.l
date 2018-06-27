@@ -37,7 +37,7 @@ var                   return VAR;
 rand                  return RAND;
 Integer               return INTEGER;
 [0-9]+   yylval.i=atoi(yytext); return INTEGER;
-[a-z]+      {
+[a-z|A-Z]+      {
                yylval.n=lookup(yytext);
                if (yylval.n==NULL) yylval.n=insert(yytext);
                return ID;

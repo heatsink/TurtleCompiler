@@ -1,52 +1,95 @@
-// This is my Turtle Program
-var x = 5; var y = 800; var i = 255;
+// @Title: Turtle Program
+// @Author: Sean Wallace
+// @Version: 1.0
 
-while (i > 0) {
-  //circle(i*4);
-  //color(i/255, i/255, i);
-  i=i-1;
+var x = 5; var y = 800;
+_buildBackgroundGradient() {
+   var i=255;
+   while (i > 0) {
+      circle(i*4);
+      color(i/255, i/255, i);
+      i=i-1;
+   }
 }
 
-i=0;
-while (i < 123) {
-  i = i+1;
-  if (i%2 == 0) {
-    thickness(2);
-    color(200/255, 0, 0);
-  }
-  if (i%2 == 1) {
-    color(0, 0, 0);
-    thickness(2);
-  }
-  if (i%4 == 1) {
-    thickness(5);
-  }
-  forward(y);
-  reset(x, -1*y);
-}
-reset(-395, 325);
-rotate(-40);
-
-i=0;
-while (i < 102) {
-  if (i%2 == 0) {
-    color(i*3/255 , i*3/255, i*2/255 );
-    thickness(2);
-  }
-  if (i%2 == 1) {
-    color(0, 0, 0);
-    thickness(1);
-  }
-  forward(y);
-  reset(x, -1*y);
-  i = i+1;
-}
-rotate(40);
-reset(-600,0);
-
-goo(x) {
-  circle(x);
+_buildStripes() {
+   var i = 0;
+   while (i < 123) {
+     i = i+1;
+     if (i%2 == 0) {
+       thickness(2);
+       color(200/255, 0, 0);
+     }
+     if (i%2 == 1) {
+       color(0, 0, 0);
+       thickness(2);
+     }
+     if (i%4 == 1) {
+       thickness(5);
+     }
+     forward(y);
+     reset(x, -1*y);
+   }
+   reset(-395, 325);
+   rotate(-40);
 }
 
-//garbage(150);
-_goo(150);
+_buildPyramid() {
+   var i = 0;
+   while (i < 102) {
+     if (i%2 == 0) {
+       color(i*3/255 , i*3/255, i*2/255 );
+       thickness(2);
+     }
+     if (i%2 == 1) {
+       color(0, 0, 0);
+       thickness(1);
+     }
+     forward(y);
+     reset(x, -1*y);
+     i = i+1;
+   }
+   rotate(40);
+}
+
+_buildRightShiftCircle(x) {
+   var i=0;
+   while (i < 27) {
+      var j=0;
+      rotate(-90);
+      while (j < 30) {
+         color(j*255/30/255, j*255/30/255, j*255/30/255);
+         thickness(j+1);
+         forward(1);
+         j = j+1;
+      }
+      color(i*255/30/255, i*255/30/255, i*255/30/255);
+      while (j > 0) {
+         thickness(j+1);
+         forward(1);
+         j = j-1;
+      }
+      rotate(90);
+      reset(-60, 30 );
+      i = i+1;
+   }
+}
+_buildBorder() {
+   reset(-30,0);
+   buildRightShiftCircle(150);
+   reset(-605,-800);
+   buildRightShiftCircle(150);
+   reset(0, -1);
+   rotate(-90);
+   buildRightShiftCircle(150);
+   rotate(-270);
+   reset(-800, -785);
+   rotate(-90);
+   buildRightShiftCircle(150);
+}
+
+buildBackgroundGradient();
+buildStripes();
+buildPyramid();
+buildBorder();
+
