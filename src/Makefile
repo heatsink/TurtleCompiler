@@ -1,3 +1,4 @@
+CFLAGS=-std=c99
 MAIN = executable executable.ps
 all : clean $(MAIN)
 

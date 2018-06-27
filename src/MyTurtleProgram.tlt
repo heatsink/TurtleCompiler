@@ -2,8 +2,8 @@
 var x = 5; var y = 800; var i = 255;
 
 while (i > 0) {
-  circle(i*4);
-  color(i/255, i/255, i);
+  //circle(i*4);
+  //color(i/255, i/255, i);
   i=i-1;
 }
 
@@ -44,4 +44,9 @@ while (i < 102) {
 rotate(40);
 reset(-600,0);
 
-circle(50);
+goo(x) {
+  circle(x);
+}
+
+//garbage(150);
+_goo(150);

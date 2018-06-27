@@ -9,6 +9,7 @@ rotate                return ROTATE;
 color                 return COLOR;
 thickness             return THICKNESS;
 reset                 return RESET;
+\_                    return FUNC;
 while                 return WHILE;
 if                    return IF;
 else                  return ELSE;
