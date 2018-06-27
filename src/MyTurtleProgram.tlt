@@ -1,35 +1,47 @@
 // This is my Turtle Program
-forward(100);
-rotate(-45);
-forward(100);
-rotate(45);
-forward(2*100-50+50-50-2*1000+2000-10^2);
-//rotate(-45);
-rotate(-25*2);
-forward(100);
-circle(35*2);
-rotate(-45);
-var dog = 10;
-forward(dog);
-dog = 80;
-forward(dog);
+var x = 5; var y = 800; var i = 255;
 
-var i = 10;
-if(i==10){
-forward(i);
-};
+while (i > 0) {
+  circle(i*4);
+  color(i/255, i/255, i);
+  i=i-1;
+}
 
-while(i < 15) {
-   i = i+1;
-forward(i);
-};
+i=0;
+while (i < 123) {
+  i = i+1;
+  if (i%2 == 0) {
+    thickness(2);
+    color(200/255, 0, 0);
+  }
+  if (i%2 == 1) {
+    color(0, 0, 0);
+    thickness(2);
+  }
+  if (i%4 == 1) {
+    thickness(5);
+  }
+  forward(y);
+  reset(x, -1*y);
+}
+reset(-395, 325);
+rotate(-40);
 
-rotate(-25*2);
-forward(100);
-rotate(-25*2);
-forward(100);
-rotate(25);
-var d = 4;
-if (d<5) {
-forward(150);
-};
+i=0;
+while (i < 102) {
+  if (i%2 == 0) {
+    color(i*3/255 , i*3/255, i*2/255 );
+    thickness(2);
+  }
+  if (i%2 == 1) {
+    color(0, 0, 0);
+    thickness(1);
+  }
+  forward(y);
+  reset(x, -1*y);
+  i = i+1;
+}
+rotate(40);
+reset(-600,0);
+
+circle(50);
