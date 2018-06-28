@@ -23,9 +23,9 @@ commandList: ;
 commandList: commandList command;
 command: functionCall;
 command: functionDecleration;
-command: CIRCLE { printf("\n0 1 "); } OPEN expr CLOSE SEMICOLON 
+command: CIRCLE { printf("\n0 0 "); } OPEN expr CLOSE SEMICOLON 
        { printf("0 360 arc closepath fill\n"); };
-command: SEMICIRCLE { printf("\n0 1 "); } OPEN expr 
+command: SEMICIRCLE { printf("\n0 0 "); } OPEN expr 
        { printf("0 \n"); } COMMA expr CLOSE SEMICOLON
        { printf("arc closepath fill\n"); };
 command: ARC { printf("\n0 1 "); } OPEN expr COMMA expr
@@ -130,4 +130,4 @@ factor: OPEN expr CLOSE;
 trailer: {printf("%% Program Complete\n");};
 %%
 int yyerror(const char *msg) { fprintf(stderr, "ERROR: %s\n", msg); return -1; }
-int main(void) { yyparse(); return 0; }
+int main(void) { time_t t; srand((unsigned) time(&t)); yyparse(); return 0; }

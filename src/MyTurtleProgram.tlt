@@ -12,9 +12,23 @@ _buildBackgroundGradient() {
    }
 }
 
-_buildSun() {
-   var diameter = 100;
+_buildCherry(diameter) {
    reset(-395, 325);
+   color(1,1,1);
+   thickness(1);
+   var i=0;
+   while (i<120) {
+      var j=0;
+      while (j<150) {
+         color((2*j)/255,(2*j)/255,(2*j)/255);
+         forward(1);
+         j=j+1;
+      }
+      reset(0, -150);
+      rotate(3);
+      i=i+1;
+   }
+   rotate(-360);
    rotate(-40);
    reset(-50, 550);
    var diameter=diameter;
@@ -26,6 +40,7 @@ _buildSun() {
    }
    reset(50, -550);
 }
+
 _buildStripes() {
    var i = 0;
    while (i < 123) {
@@ -44,7 +59,7 @@ _buildStripes() {
      forward(y);
      reset(x, -1*y);
    }
-   buildSun();
+   buildCherry(100);
 }
 _buildPyramid() {
    var i = 0;
@@ -113,8 +128,15 @@ _buildCenterCircle(diameter) {
    arc(diameter+10, 200, 275);
 }
 
+_buildRandomCircle() {
+   rotate(180);
+   reset(-100, -100);
+   circle(rand);
+}
+
 buildBackgroundGradient();
 buildStripes();
 buildPyramid();
 buildBorder();
 buildCenterCircle(10);
+buildRandomCircle();
