@@ -50,7 +50,7 @@ _buildPyramid() {
    var i = 0;
    while (i < 102) {
      if (i%2 == 0) {
-       color(i*3/255 , i*3/255, i*2/255 );
+       color((122-i)*3/255 , (122-i)*3/255, (100-i)*2/255 );
        thickness(2);
      }
      if (i%2 == 1) {
