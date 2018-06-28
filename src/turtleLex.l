@@ -5,6 +5,7 @@
 %%
 forward               return FORWARD;
 circle                return CIRCLE;
+semicircle            return SEMICIRCLE;
 rotate                return ROTATE;
 color                 return COLOR;
 thickness             return THICKNESS;

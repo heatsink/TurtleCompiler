@@ -12,6 +12,20 @@ _buildBackgroundGradient() {
    }
 }
 
+_buildSun() {
+   var diameter = 100;
+   reset(-395, 325);
+   rotate(-40);
+   reset(-50, 550);
+   var diameter=diameter;
+   color(10/255, 0, 0);
+   while (diameter > 0) {
+      color((255-diameter)/255, 50/255, 40/255);
+      circle(diameter);
+      diameter = diameter - 1;
+   }
+   reset(50, -550);
+}
 _buildStripes() {
    var i = 0;
    while (i < 123) {
@@ -30,10 +44,8 @@ _buildStripes() {
      forward(y);
      reset(x, -1*y);
    }
-   reset(-395, 325);
-   rotate(-40);
+   buildSun();
 }
-
 _buildPyramid() {
    var i = 0;
    while (i < 102) {
@@ -51,7 +63,6 @@ _buildPyramid() {
    }
    rotate(40);
 }
-
 _buildRightShiftCircle(x) {
    var i=0;
    while (i < 27) {
@@ -79,7 +90,7 @@ _buildBorder() {
    buildRightShiftCircle(150);
    reset(-605,-800);
    buildRightShiftCircle(150);
-   reset(0, -1);
+   reset(0, 1);
    rotate(-90);
    buildRightShiftCircle(150);
    rotate(-270);
@@ -88,8 +99,20 @@ _buildBorder() {
    buildRightShiftCircle(150);
 }
 
+_buildCenterCircle(diameter) {
+   rotate(-90);
+   reset(585, -295);
+   var diameter=diameter;
+   color(10/255, 0, 0);
+   while (diameter > 0) {
+      color((diameter)/255, 50/255, 40/255);
+      circle(diameter);
+      diameter = diameter - 1;
+   }
+}
+
 buildBackgroundGradient();
 buildStripes();
 buildPyramid();
 buildBorder();
-
+buildCenterCircle(10);
