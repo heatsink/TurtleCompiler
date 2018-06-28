@@ -7,6 +7,7 @@ forward               return FORWARD;
 circle                return CIRCLE;
 semicircle            return SEMICIRCLE;
 arc                   return ARC;
+arcfill               return ARCFILL;
 rotate                return ROTATE;
 color                 return COLOR;
 thickness             return THICKNESS;

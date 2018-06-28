@@ -8,7 +8,7 @@ extern int yylex(void);
 int yyerror(const char *msg);
 %}
 
-%token FORWARD CIRCLE SEMICIRCLE ARC ROTATE COLOR THICKNESS
+%token FORWARD CIRCLE SEMICIRCLE ARC ARCFILL ROTATE COLOR THICKNESS
 %token OPEN CLOSE OPENCURLYBRACE CLOSECURLYBRACE EXPONENT MUL DIV MOD PLUS MINUS COMMA EQUALS VAR
 %token IF ELSE FUNC WHILE ISEQUAL ISNOTEQUAL AND OR NOT GREATERTHAN LESSTHAN
 %token RESET RAND SEMICOLON
@@ -29,6 +29,9 @@ command: SEMICIRCLE { printf("\n0 0 "); } OPEN expr
        { printf("0 \n"); } COMMA expr CLOSE SEMICOLON
        { printf("arc closepath fill\n"); };
 command: ARC { printf("\n0 1 "); } OPEN expr COMMA expr
+       { printf(" \n"); } COMMA expr CLOSE SEMICOLON
+       { printf("arc currentpoint translate stroke\n"); };
+command: ARCFILL { printf("\n0 1 "); } OPEN expr COMMA expr
        { printf(" \n"); } COMMA expr CLOSE SEMICOLON
        { printf("arc closepath stroke \n"); };
 command: RESET OPEN expr COMMA expr CLOSE SEMICOLON 
