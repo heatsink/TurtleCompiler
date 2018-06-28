@@ -109,6 +109,8 @@ _buildCenterCircle(diameter) {
       circle(diameter);
       diameter = diameter - 1;
    }
+   color(1,1,1);
+   arc(diameter+10, 200, 275);
 }
 
 buildBackgroundGradient();
