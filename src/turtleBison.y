@@ -122,7 +122,7 @@ prod: prod MOD exp { printf("mod "); };
 exp: factor;
 exp: exp EXPONENT factor { printf("exp "); };
 factor: INTEGER { printf(" %d ",$1); };
-factor: RAND { printf("%d ", (1+rand()%20)); };
+factor: RAND OPEN CLOSE { printf("%d ", (1+rand()%20)); };
 factor: ID  
       { 
       if($1->defined){ printf(" tlt%s ", $1->name); }

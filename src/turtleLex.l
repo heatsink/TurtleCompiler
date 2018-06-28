@@ -49,7 +49,6 @@ Integer               return INTEGER;
 \/\/.*               ;
 \n                   ;
 [[:space:]]          ;
-
 .  fprintf(stderr, "Unexpected '%c'\n", yytext[0]);
 
 %%

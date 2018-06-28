@@ -11,7 +11,6 @@ _buildBackgroundGradient() {
       i=i-1;
    }
 }
-
 _buildCherry(diameter) {
    reset(-395, 325);
    color(1,1,1);
@@ -105,7 +104,7 @@ _buildBorder() {
    buildRightShiftCircle(150);
    reset(-605,-800);
    buildRightShiftCircle(150);
-   reset(0, 1);
+   reset(0, 2);
    rotate(-90);
    buildRightShiftCircle(150);
    rotate(-270);
@@ -113,7 +112,6 @@ _buildBorder() {
    rotate(-90);
    buildRightShiftCircle(150);
 }
-
 _buildCenterCircle(diameter) {
    rotate(-90);
    reset(585, -295);
@@ -125,13 +123,14 @@ _buildCenterCircle(diameter) {
       diameter = diameter - 1;
    }
    color(1,1,1);
-   arc(diameter+10, 200, 275);
+   thickness(1);
+   arc(diameter+10, 200, 300);
 }
 
 _buildRandomCircle() {
    rotate(180);
    reset(-100, -100);
-   circle(rand);
+   circle(2*rand());
 }
 
 buildBackgroundGradient();

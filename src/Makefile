@@ -1,4 +1,4 @@
-CFLAGS=-std=c99
+CFLAGS=-std=c99 -Wall -pedantic
 MAIN = executable executable.ps
 all : clean $(MAIN)
 
