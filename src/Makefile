@@ -13,6 +13,7 @@ executable: lex.yy.c turtleBison.tab.c turtleBison.tab.h symtab.c symtab.h
 
 executable.ps: MyTurtleProgram.tlt executable
 	./executable < MyTurtleProgram.tlt > executable.ps
+	xdg-open ~/Desktop/FreshTurtle/TurtleCompiler/src/executable.ps
 
 clean :
 	rm -f lex.yy.c turtleBison.tab.* *.ps *.o

@@ -11,6 +11,7 @@ _buildBackgroundGradient() {
       i=i-1;
    }
 }
+
 _buildCherry(diameter) {
    reset(-395, 325);
    color(1,1,1);
@@ -60,6 +61,7 @@ _buildStripes() {
    }
    buildCherry(100);
 }
+
 _buildPyramid() {
    var i = 0;
    while (i < 102) {
@@ -69,7 +71,7 @@ _buildPyramid() {
      }
      if (i%2 == 1) {
        color(0, 0, 0);
-       thickness(1);
+       thickness thin;
      }
      forward(y);
      reset(x, -1*y);
@@ -77,6 +79,7 @@ _buildPyramid() {
    }
    rotate(40);
 }
+
 _buildRightShiftCircle(x) {
    var i=0;
    while (i < 27) {
@@ -99,6 +102,7 @@ _buildRightShiftCircle(x) {
       i = i+1;
    }
 }
+
 _buildBorder() {
    reset(-30,0);
    buildRightShiftCircle(150);
@@ -112,6 +116,7 @@ _buildBorder() {
    rotate(-90);
    buildRightShiftCircle(150);
 }
+
 _buildCenterCircle(diameter) {
    rotate(-90);
    reset(585, -295);

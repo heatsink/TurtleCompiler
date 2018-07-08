@@ -8,7 +8,7 @@ extern int yylex(void);
 int yyerror(const char *msg);
 %}
 
-%token FORWARD CIRCLE SEMICIRCLE ARC ARCFILL ROTATE COLOR THICKNESS
+%token FORWARD CIRCLE SEMICIRCLE ARC ARCFILL ROTATE COLOR THICKNESS THIN
 %token OPEN CLOSE OPENCURLYBRACE CLOSECURLYBRACE EXPONENT MUL DIV MOD PLUS MINUS COMMA EQUALS VAR
 %token IF ELSE FUNC WHILE ISEQUAL ISNOTEQUAL AND OR NOT GREATERTHAN LESSTHAN
 %token RESET RAND SEMICOLON
@@ -48,6 +48,8 @@ command: COLOR OPEN expr COMMA expr COMMA expr CLOSE SEMICOLON
        { printf(" setrgbcolor\n"); };
 command: THICKNESS OPEN expr CLOSE SEMICOLON
        { printf("setlinewidth\n"); }; 
+command: THICKNESS THIN SEMICOLON
+       { printf("1 setlinewidth\n"); }; 
 command: RESET OPEN CLOSE SEMICOLON
        { printf(" 0 0 moveto currentpoint translate stroke\n"); };
 command: variableDecl;
@@ -77,11 +79,11 @@ params: ID COMMA params
       {$1->defined=1; printf("/tlt%s exch def\n", $1->name);};
 
 /* CONDITIONALS */
-conditional: ifhead commandList CLOSECURLYBRACE {printf("\n}\nif\n");};
-conditional: ifhead commandList CLOSECURLYBRACE elsehead commandList CLOSECURLYBRACE  {printf("\n}\nifelse\n");};
+conditional: ifsignal commandList CLOSECURLYBRACE {printf("\n}\nif\n");};
+conditional: ifsignal commandList CLOSECURLYBRACE elsehead commandList CLOSECURLYBRACE  {printf("\n}\nifelse\n");};
 conditional: whilehead whilehead2 commandList CLOSECURLYBRACE {printf("\n}\nloop\n");};
 
-ifhead: IF OPEN bool CLOSE OPENCURLYBRACE {printf("{\n");};
+ifsignal : IF OPEN bool CLOSE OPENCURLYBRACE {printf("{\n");};
 elsehead: ELSE OPENCURLYBRACE {printf("}\n{\n");};
 whilehead: WHILE OPEN {printf("\n{\n");};
 whilehead2: stackBool CLOSE OPENCURLYBRACE {printf("\n{ exit }\nif\n");};
@@ -101,12 +103,12 @@ bool: expr GREATERTHAN expr {printf("gt ");};
 bool: expr LESSTHAN expr {printf("lt ");};
 bool: expr ISEQUAL expr {printf("eq ");};
 bool: expr ISNOTEQUAL expr {printf("ne ");};
-bool: xbool;
-xbool: ybool;
-xbool: bool OR bool {printf("or ");};
-xbool: bool AND bool {printf("and ");};
-xbool: NOT bool {printf(" not ");};
-ybool: OPEN bool CLOSE;
+bool: firstCompare;
+firstCompare: secondCompare;
+firstCompare: bool OR bool {printf("or ");};
+firstCompare: bool AND bool {printf("and ");};
+firstCompare: NOT bool {printf(" not ");};
+secondCompare: OPEN bool CLOSE;
 
 /* EXPRESSIONS */
 expr: prod;
@@ -132,5 +134,5 @@ factor: OPEN expr CLOSE;
 
 trailer: {printf("%% Program Complete\n");};
 %%
-int yyerror(const char *msg) { fprintf(stderr, "ERROR: %s\n", msg); return -1; }
+int yyerror(const char *msg) { fprintf(stderr, "GENERIC ERROR: %s\n", msg); return -1; }
 int main(void) { time_t t; srand((unsigned) time(&t)); yyparse(); return 0; }

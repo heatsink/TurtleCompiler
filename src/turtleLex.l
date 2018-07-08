@@ -11,6 +11,7 @@ arcfill               return ARCFILL;
 rotate                return ROTATE;
 color                 return COLOR;
 thickness             return THICKNESS;
+thin                  return THIN;
 reset                 return RESET;
 \_                    return FUNC;
 while                 return WHILE;
